@@ -124,7 +124,78 @@ public class workWithString {
     else System.out.print("No");
 
     }
+    public static void task10(Scanner sc)
+    {
+        int i=0,j;
+        StringBuilder str = new StringBuilder();
+        str.append(sc.nextLine());
+        while(i!=-1)
+        {
+            j=0;
+            while(j!=str.length()){
+                if(i!=j && str.charAt(i)==str.charAt(j)) {
+                    System.out.println(str.charAt(i));
+                    i=-2; break;
+                }
+                j++;
+            }
+            i++;
+        }
+    }
 
+    public static void task11(Scanner sc){
+        StringBuilder t = new StringBuilder(); StringBuilder s = new StringBuilder();
+        t.append(sc.nextLine()); s.append(sc.nextLine());
+        int tl=t.length(), sl=s.length(),j=0; boolean p=false;
+        for (int i = 0; i < sl; i++) {
+            for ( j = tl-1; j >= 0 ; j--) {
+                if(s.charAt(i+j)!=t.charAt(j)){
+                    for (int k = tl-1; k >= 0; k--) {
+                        if(s.charAt(i+j)==t.charAt(k)) {i+=k==tl-1?tl:tl-k-2; j=-2; break;}
+                    }
+                    j=-2; break;
+                }
+            }
+            if (j==-1) p=true;
+            if (i+tl>=sl || p) break;
+        }
+        if(p) System.out.println("yes");
+        else System.out.println("no");
+    }
+
+    public static void task12(Scanner sc){
+        int x=0,y=0,n=0; String way="";
+        StringBuilder str=new StringBuilder();
+        while(true){
+            str.append(sc.nextLine());
+            for (int i = 0; i <str.length() ; i++)
+                if(str.charAt(i)==' ') {
+                    n=0;
+                    for (int j = i+1; j < str.length(); j++) {
+                        n+=Integer.valueOf(String.valueOf(str.charAt(j))); n*=10;
+                    }
+                    n/=10;
+                    str.delete(i,str.length()); way=str.toString(); break;
+                }
+            switch(way){
+                case "N" : y +=n; break;
+                case "S" : y -=n; break;
+                case "E" : x +=n; break;
+                case "W" : x -=n; break;
+            }
+            System.out.println(x+" "+ y);
+            str.delete(0,str.length());
+        }
+    }
+
+    public static void task13(Scanner sc){
+        StringBuilder str = new StringBuilder();
+        str.append(sc.nextLine());
+        for (int i = 0; i <str.length() ; i++)
+            if(str.charAt(i)==' ') {str.deleteCharAt(i); i--;}
+        if(serchPolindrom(str.toString())) System.out.print("yes");
+        else System.out.print("no");
+    }
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
@@ -136,6 +207,10 @@ public class workWithString {
         // task6(sc);
         //task7(sc);
         // task9(sc);
+        // task10(sc);
+        // task11(sc);
+        // task12(sc);
+        // task13(sc);
 
     }
 }
